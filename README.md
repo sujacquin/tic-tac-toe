@@ -2,6 +2,7 @@
 ## Synopsis
 
 This is a tic-tac-toe game built with React.
+https://sujacquin-tic-tac-toe.herokuapp.com/
 
 
 
@@ -67,8 +68,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# tic-tac-toe
-# tic-tac-toe
-# tictactoe
-# tictactoe
-# tic-tac-toe
