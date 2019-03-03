@@ -31,16 +31,15 @@ class App extends Component {
         await this.setState(({ player: "X", grid: newGrid, clickNum: this.state.clickNum + 1, winner: "0" }));
       }
 
-    }
+      this.endGame();
+      if (this.state.gameEnded === true) {
+        await this.setState({ winsX: this.state.winner === "X" ? this.state.winsX + 1 : this.state.winsX, wins0: this.state.winner === "0" ? this.state.wins0 + 1 : this.state.wins0 })
 
-    this.endGame();
+      }
 
-    if (this.state.gameEnded === true) {
-      await this.setState({ winsX: this.state.winner === "X" ? this.state.winsX + 1 : this.state.winsX, wins0: this.state.winner === "0" ? this.state.wins0 + 1 : this.state.wins0 })
-
-    }
-    if (this.state.gameEnded === false) {
-      setTimeout(() => this.computerPlay(), 500);
+      if (this.state.gameEnded === false && this.state.opponent === "computer") {
+        setTimeout(() => this.computerPlay(), 500);
+      }
     }
 
   }
@@ -48,7 +47,6 @@ class App extends Component {
   endGame = async () => {
 
     const newGrid = [...this.state.grid]
-
 
     for (let i = 1; i <= newGrid.length; i++) {
       if (newGrid[i - 1] === "") {
@@ -59,12 +57,10 @@ class App extends Component {
     if ((newGrid[0] === newGrid[1] && newGrid[2] === newGrid[1]) || (newGrid[0] === newGrid[4] && newGrid[4] === newGrid[8]) || (newGrid[0] === newGrid[3] && newGrid[3] === newGrid[6]) || (newGrid[3] === newGrid[4] && newGrid[4] === newGrid[5]) || (newGrid[6] === newGrid[7] && newGrid[7] === newGrid[8]) || (newGrid[1] === newGrid[4] && newGrid[4] === newGrid[7]) || (newGrid[2] === newGrid[5] && newGrid[5] === newGrid[8]) || (newGrid[2] === newGrid[4] && newGrid[4] === newGrid[6])) {
       await this.setState({ gameEnded: true })
     }
-
-
     if (this.state.clickNum === 9 && this.state.gameEnded === false) {
-      await this.setState({ draw: true })
-    }
+      await this.setState({ draw: true, gameEnded: true })
 
+    }
   }
 
   playAgain = async () => {
@@ -73,27 +69,27 @@ class App extends Component {
   }
 
   chooseOpponent = async (event) => {
-    await this.setState({ opponent: event.target.value })
+    await this.setState({ opponent: event.target.value, winsX: 0, wins0: 0 })
+    this.playAgain();
   }
 
   computerPlay = async () => {
-    if (this.state.opponent === "computer") {
+    const newGrid = [...this.state.grid];
+    let computer = ""
 
-
-      const newGrid = [...this.state.grid];
-      let computer = ""
-
-      for (let i = 0; i < newGrid.length; i++) {
-        if (newGrid[i] === "") {
-          computer = computer + i
-        }
+    for (let i = 0; i < newGrid.length; i++) {
+      if (newGrid[i] === "") {
+        computer = computer + i
       }
-
-      let index = computer.charAt(Math.floor(Math.random() * computer.length))
-      newGrid[index] = "0"
-      await this.setState(({ player: "X", grid: newGrid, clickNum: this.state.clickNum + 1, winner: "0" }));
     }
+
+    let index = computer.charAt(Math.floor(Math.random() * computer.length))
+    newGrid[index] = "0"
+    await this.setState(({ player: "X", grid: newGrid, clickNum: this.state.clickNum + 1, winner: "0" }));
+    this.endGame();
+
   }
+
 
   render() {
 
@@ -109,31 +105,35 @@ class App extends Component {
         </div>
       </>
       );
-    } else if (this.state.gameEnded === true && this.state.draw === false) {
-      return (<>
-        <div className="container">
-          <SelectOpponent onChange={this.chooseOpponent} />
-          <Players player1="X" player2="0" currentPlayer={this.state.player} winsX={this.state.winsX} wins0={this.state.wins0} />
-          <p>Winner: {this.state.winner}</p>
-          <Grid grid={this.state.grid} handleClick={this.handleClick} />
-          <button variant="light" label="Play again" onClick={() => { this.playAgain() }}>Play Again</button>
-        </div>
-      </>
-      )
-    } else {
-      return (<>
-        <div className="container">
-          <SelectOpponent onChange={this.chooseOpponent} />
-          <Players player1="X" player2="0" currentPlayer={this.state.player} winsX={this.state.winsX} wins0={this.state.wins0} />
-          <p>Draw</p>
-          <Grid grid={this.state.grid} handleClick={this.handleClick} />
-          <button variant="light" label="Play again" onClick={() => { this.playAgain() }}>Play Again</button>
-        </div>
-      </>
-      )
-    }
+    } else if (this.state.gameEnded === true) {
 
+      if (this.state.draw === false) {
+        return (<>
+          <div className="container">
+            <SelectOpponent onChange={this.chooseOpponent} />
+            <Players player1="X" player2="0" currentPlayer={this.state.player} winsX={this.state.winsX} wins0={this.state.wins0} />
+            <p>Winner: {this.state.winner}</p>
+            <Grid grid={this.state.grid} handleClick={this.handleClick} />
+            <button variant="light" label="Play again" onClick={() => { this.playAgain() }}>Play Again</button>
+          </div>
+        </>
+        )
+      } else if (this.state.draw === true) {
+        return (<>
+          <div className="container">
+            <SelectOpponent onChange={this.chooseOpponent} />
+            <Players player1="X" player2="0" currentPlayer={this.state.player} winsX={this.state.winsX} wins0={this.state.wins0} />
+            <p>Draw</p>
+            <Grid grid={this.state.grid} handleClick={this.handleClick} />
+            <button variant="light" label="Play again" onClick={() => { this.playAgain() }}>Play Again</button>
+          </div>
+        </>
+        )
+      }
+
+    }
   }
 }
+
 
 export default App;
