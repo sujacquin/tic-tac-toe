@@ -1,0 +1,19 @@
+.player {
+    width: 100px;
+    font-size: 14px;
+    line-height: 28px;
+    box-shadow: 0px 1px 5px 0px rgba(102, 102, 102, 0.75);
+    border-radius: 5px;
+    margin: 0 30px;
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.players {
+    display:flex;
+    margin-top: 20px;  
+    
+}
