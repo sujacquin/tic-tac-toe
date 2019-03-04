@@ -15,7 +15,7 @@ See Demo: https://sujacquin-tic-tac-toe.herokuapp.com/
 
 ## Functionalities
 
-Play against computer (easy)
+Play against computer (easy) <br>
 Play against friend
 
 ## Running the project
