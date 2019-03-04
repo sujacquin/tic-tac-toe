@@ -3,11 +3,15 @@
 
 This is a tic-tac-toe game built with React.
 
+
+
 <img width="564" alt="screenshot 2019-03-03 at 20 34 57" src="https://user-images.githubusercontent.com/46267460/53720222-7a3b4d00-3e60-11e9-8ac5-4752a7fa1e88.png">
 
 ## Usage Example
 
 See Demo: https://sujacquin-tic-tac-toe.herokuapp.com/
+
+![tictactoe](https://user-images.githubusercontent.com/46267460/53758843-2b70d000-3ebf-11e9-93ba-f21930e25e16.gif)
 
 ## Functionalities
 
