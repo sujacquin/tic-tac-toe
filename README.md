@@ -36,11 +36,11 @@ npm run build
 ```
 
 ## Built With
-html
-css
-JavaScript
-React.js
-Create React App
+html <br>
+css <br>
+JavaScript <br>
+React.js <br>
+Create React App <br>
 
 ## Acknowledgments
 This project was bootstrapped with Create React App.
