@@ -11,7 +11,7 @@ This is a tic-tac-toe game built with React.
 
 See Demo: https://sujacquin-tic-tac-toe.herokuapp.com/
 
-![tictactoe](https://user-images.githubusercontent.com/46267460/53758843-2b70d000-3ebf-11e9-93ba-f21930e25e16.gif)
+![tictactoe](https://user-images.githubusercontent.com/46267460/53761281-7857a500-3ec5-11e9-9d51-ac721279ee12.gif)
 
 ## Functionalities
 
